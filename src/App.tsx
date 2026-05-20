@@ -154,8 +154,8 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="absolute bottom-8 text-neutral-500 text-sm text-align-center">
-        <p>Built for speed and scale. • {new Date().getFullYear()}</p>
+      <footer className="absolute bottom-8 text-neutral-500 text-sm">
+        <p>Built for speed and scale. • {new Date().getFullYear()} • View Source Code on Github: https://github.com/Hlib-Rachkovskyy/distributed-link-routing-api</p>
         <p>View Source Code on Github: https://github.com/Hlib-Rachkovskyy/distributed-link-routing-api</p>
       </footer>
     </div>
