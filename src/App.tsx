@@ -24,7 +24,8 @@ function App() {
     setCopied(false);
 
     try {
-      const response = await fetch('/api/v1/urls', {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '';
+      const response = await fetch(`${apiBaseUrl}/api/v1/urls`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

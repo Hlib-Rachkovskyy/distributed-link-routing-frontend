@@ -196,20 +196,40 @@ export default defineConfig({
 })
 ```
 
-### Production Variables
+### 🔐 Environment Variables
 
-For production builds, the static server hosting the app should ideally handle requests using an API Gateway or reverse-proxy (e.g., Nginx, Cloudflare Rules). 
+The application comes pre-equipped with environment variable support. You can configure them in the `.env` file in the root directory. An `.env.example` file is provided as a template.
 
-If you prefer to configure dynamic environment variables, you can create a `.env` file in the root directory:
+| Variable | Description | Default / Example |
+| :--- | :--- | :--- |
+| `VITE_API_BASE_URL` | Base URL for the URL shortener backend API. Leave blank in local development to route requests through Vite's local dev proxy server, avoiding CORS issues. | `https://api.yourdomain.com` |
+| `PORT` | Custom port on which the local Vite development server should listen. | `5173` |
 
-```env
-VITE_API_BASE_URL=https://api.yourdomain.com
+### Setting Up Environment Variables
+
+1. Copy the example template to create your `.env` file:
+   ```bash
+   cp .env.example .env
+   ```
+2. Open `.env` and fill in the values according to your environment.
+
+Vite loads environment variables in your React components via `import.meta.env`:
+```typescript
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '';
+const response = await fetch(`${apiBaseUrl}/api/v1/urls`, { ... });
 ```
 
-And update your API fetch calls in `App.tsx` to reference this variable:
+Vite also loads the custom port in `vite.config.ts` dynamically utilizing `loadEnv`:
 ```typescript
-const baseUrl = import.meta.env.VITE_API_BASE_URL || '';
-const response = await fetch(`${baseUrl}/api/v1/urls`, { ... });
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+  return {
+    server: {
+      port: parseInt(env.PORT || '5173', 10),
+      // ...
+    }
+  }
+})
 ```
 
 ---
