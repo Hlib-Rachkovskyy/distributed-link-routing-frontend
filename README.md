@@ -380,4 +380,4 @@ Because this app compiles to plain static assets (`HTML`, `JS`, `CSS`), you can 
   ```bash
   rm -rf node_modules/.vite
   npm run dev
-  ```
+  ``
