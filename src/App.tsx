@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link2, Copy, Check, ArrowRight, Loader2, AlertCircle } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { Analytics } from '@vercel/analytics/react';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -157,6 +158,7 @@ function App() {
       <footer className="absolute bottom-8 text-neutral-500 text-sm">
         <p>Built for speed and scale. • {new Date().getFullYear()} • View Source Code on Github: https://github.com/Hlib-Rachkovskyy/distributed-link-routing-api</p>
       </footer>
+      <Analytics />
     </div>
   );
 }
